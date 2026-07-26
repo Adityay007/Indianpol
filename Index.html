@@ -1,0 +1,2652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>IndianPol — The Operating System for Political Leaders in India</title>
+<meta name="description" content="IndianPol helps MLAs, MPs and constituency offices manage citizen grievances, coordinate volunteers, build digital presence and run professional political operations — from one platform.">
+<meta name="keywords" content="constituency management software India, political CRM India, citizen grievance management, volunteer management politicians, MLA office software, MP constituency management, political operating system India, political office management India">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="IndianPol — The Operating System for Political Leaders">
+<meta property="og:description" content="Stop managing your constituency from WhatsApp groups. IndianPol gives political leaders a professional operating system for citizen engagement, grievance tracking, and constituency management.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.indianpol.in">
+<link rel="canonical" href="https://www.indianpol.in">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "IndianPol",
+      "applicationCategory": "BusinessApplication",
+      "description": "Political operating system for Indian political leaders. Constituency management, citizen grievance tracking, volunteer coordination, and digital presence management.",
+      "url": "https://www.indianpol.in",
+      "operatingSystem": "Web, Android, iOS",
+      "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is IndianPol?", "acceptedAnswer": { "@type": "Answer", "text": "IndianPol is a political operating system that helps Indian political leaders manage constituency operations, track citizen grievances, coordinate volunteers, and build their digital presence — from one professional platform." } },
+        { "@type": "Question", "name": "Is IndianPol only for election campaigns?", "acceptedAnswer": { "@type": "Answer", "text": "No. IndianPol is designed for year-round political leadership — not just election periods. It helps leaders manage their office, serve citizens, and build long-term public trust." } },
+        { "@type": "Question", "name": "Is my constituency data secure?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. All data is encrypted, hosted on India-based servers, and accessible only to authorized users in your office. We do not share or sell any data." } }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   RESET & TOKENS
+───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:      #060B18;
+  --ink-2:    #0D1424;
+  --ink-3:    #131F35;
+  --ink-4:    #1C2D4A;
+  --ink-5:    #243459;
+  --blue:     #1A56DB;
+  --blue-h:   #1648C0;
+  --blue-l:   #3B82F6;
+  --blue-xl:  #93C5FD;
+  --green:    #059669;
+  --green-l:  #10B981;
+  --amber:    #D97706;
+  --red:      #DC2626;
+  --white:    #F9FAFB;
+  --g100:     #E2E8F0;
+  --g300:     #CBD5E1;
+  --g400:     #94A3B8;
+  --g500:     #64748B;
+  --g600:     #475569;
+  --dp:       'Plus Jakarta Sans', system-ui, sans-serif;
+  --db:       'Inter', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--db);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+ul, ol { list-style: none; }
+
+/* ─────────────────────────────────────────────
+   LAYOUT
+───────────────────────────────────────────── */
+.wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section { position: relative; }
+
+/* ─────────────────────────────────────────────
+   TYPE SCALE
+───────────────────────────────────────────── */
+.display {
+  font-family: var(--dp);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+}
+.d-xl  { font-size: clamp(36px, 7vw, 64px); }
+.d-lg  { font-size: clamp(28px, 5vw, 46px); }
+.d-md  { font-size: clamp(22px, 4vw, 34px); }
+.d-sm  { font-size: clamp(18px, 3vw, 24px); }
+
+.label {
+  font-family: var(--dp);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--blue-l);
+}
+
+.body-lg { font-size: 18px; line-height: 1.7; color: var(--g400); }
+.body-md { font-size: 15px; line-height: 1.65; color: var(--g400); }
+.body-sm { font-size: 13px; line-height: 1.6; color: var(--g500); }
+
+/* ─────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--dp);
+  font-weight: 700;
+  border-radius: 10px;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn-lg { padding: 16px 28px; font-size: 15px; border-radius: 12px; }
+.btn-md { padding: 12px 22px; font-size: 14px; }
+.btn-sm { padding: 9px 16px; font-size: 13px; border-radius: 8px; }
+.btn-full { width: 100%; padding: 16px; font-size: 15px; border-radius: 12px; }
+
+.btn-primary {
+  background: var(--blue);
+  color: white;
+  box-shadow: 0 2px 16px rgba(26,86,219,0.35);
+}
+.btn-primary:hover {
+  background: var(--blue-h);
+  box-shadow: 0 4px 24px rgba(26,86,219,0.5);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--g300);
+  border: 1.5px solid rgba(255,255,255,0.14);
+}
+.btn-outline:hover {
+  border-color: rgba(255,255,255,0.28);
+  color: var(--white);
+}
+
+.btn-ghost {
+  background: rgba(255,255,255,0.05);
+  color: var(--g300);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.09); color: var(--white); }
+
+.btn-wa {
+  background: #25D366;
+  color: white;
+  box-shadow: 0 2px 12px rgba(37,211,102,0.3);
+}
+.btn-wa:hover { background: #1fba58; transform: translateY(-1px); }
+
+/* ─────────────────────────────────────────────
+   TOP NAV
+───────────────────────────────────────────── */
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+}
+
+.topnav.scrolled {
+  background: rgba(6,11,24,0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--green-l) 100%);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--dp);
+  font-weight: 800; font-size: 13px;
+  color: white;
+}
+
+.nav-logo-name {
+  font-family: var(--dp);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.3px;
+  color: var(--white);
+}
+.nav-logo-name em { color: var(--blue-l); font-style: normal; }
+
+.nav-links {
+  display: none;
+  flex: 1;
+  gap: 28px;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--g400);
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--white); }
+
+.nav-actions { display: none; gap: 10px; align-items: center; margin-left: auto; }
+
+.hamburger {
+  margin-left: auto;
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.hamburger span {
+  display: block;
+  width: 17px; height: 1.5px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.28s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ─────────────────────────────────────────────
+   MOBILE NAV OVERLAY
+───────────────────────────────────────────── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--ink);
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+  padding-top: 64px;
+}
+.nav-overlay.open { transform: translateX(0); }
+
+.nav-overlay-body {
+  flex: 1;
+  padding: 28px 24px;
+  overflow-y: auto;
+}
+
+.nav-ol-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+}
+.nav-ol-icon {
+  width: 38px; height: 38px;
+  background: rgba(26,86,219,0.12);
+  border: 1px solid rgba(26,86,219,0.2);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.nav-ol-title { font-family: var(--dp); font-weight: 600; font-size: 15px; color: var(--white); }
+.nav-ol-sub { font-size: 12px; color: var(--g500); margin-top: 2px; }
+
+.nav-overlay-foot {
+  padding: 20px 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION HEADERS
+───────────────────────────────────────────── */
+.sec-head {
+  margin-bottom: 48px;
+}
+.sec-head .label { margin-bottom: 12px; display: block; }
+.sec-head h2 { color: var(--white); margin-bottom: 14px; }
+.sec-head p { max-width: 560px; }
+
+.sec-head.center { text-align: center; }
+.sec-head.center p { margin: 0 auto; }
+
+/* ─────────────────────────────────────────────
+   DIVIDERS
+───────────────────────────────────────────── */
+.rule { border: none; border-top: 1px solid rgba(255,255,255,0.06); }
+
+/* ─────────────────────────────────────────────
+   REVEAL ANIMATIONS
+───────────────────────────────────────────── */
+.rv {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.rv.in { opacity: 1; transform: translateY(0); }
+.rv-d1 { transition-delay: .06s; }
+.rv-d2 { transition-delay: .12s; }
+.rv-d3 { transition-delay: .18s; }
+.rv-d4 { transition-delay: .24s; }
+.rv-d5 { transition-delay: .30s; }
+
+/* ─────────────────────────────────────────────
+   HERO WHEEL (Ashoka-inspired rotating ring)
+───────────────────────────────────────────── */
+.hero-wheel {
+  position: absolute;
+  top: 50%;
+  right: -180px;
+  transform: translateY(-50%);
+  width: 520px;
+  height: 520px;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-wheel svg {
+  width: 100%;
+  height: 100%;
+  animation: wheel-spin 60s linear infinite;
+}
+@keyframes wheel-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+  .hero-wheel {
+    right: -200px;
+    top: 30%;
+    width: 420px;
+    height: 420px;
+    opacity: 0.055;
+  }
+}
+
+
+.hero {
+  min-height: 100svh;
+  padding: 88px 0 56px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% -5%, rgba(26,86,219,0.22) 0%, transparent 62%),
+    radial-gradient(ellipse 40% 30% at 85% 85%, rgba(5,150,105,0.09) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Problem-first badge */
+.hero-problem-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 10px;
+  background: rgba(220,38,38,0.1);
+  border: 1px solid rgba(220,38,38,0.25);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #FCA5A5;
+  margin-bottom: 24px;
+}
+.hero-problem-badge-icon {
+  width: 20px; height: 20px;
+  background: rgba(220,38,38,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+}
+
+.hero-h1 {
+  font-family: var(--dp);
+  font-weight: 800;
+  font-size: clamp(34px, 7vw, 64px);
+  line-height: 1.07;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 22px;
+}
+
+.hero-h1 .accent-blue {
+  background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-h1 .accent-green {
+  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: var(--g400);
+  line-height: 1.68;
+  max-width: 580px;
+  margin: 0 auto 32px;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.hero-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 20px;
+  font-size: 12px;
+  color: var(--g500);
+}
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.hero-trust-item .check { color: var(--green-l); font-size: 12px; }
+
+/* ─────────────────────────────────────────────
+   PROBLEM BAND — who this is for
+───────────────────────────────────────────── */
+.who-band {
+  padding: 60px 0;
+  background: var(--ink-2);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.who-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--g500);
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.who-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.who-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--ink-3);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 100px;
+  font-family: var(--dp);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--g300);
+}
+.who-pill-icon { font-size: 15px; }
+
+/* ─────────────────────────────────────────────
+   SECTION 2 — PROBLEMS
+───────────────────────────────────────────── */
+.problems-section {
+  padding: 88px 0;
+}
+
+.problems-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.problem-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 22px;
+  background: var(--ink-2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  transition: border-color 0.2s;
+}
+.problem-card:hover { border-color: rgba(220,38,38,0.2); }
+
+.problem-icon {
+  width: 40px; height: 40px;
+  background: rgba(220,38,38,0.1);
+  border: 1px solid rgba(220,38,38,0.18);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.problem-title {
+  font-family: var(--dp);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 5px;
+}
+.problem-desc { font-size: 13px; color: var(--g500); line-height: 1.55; }
+
+/* ─────────────────────────────────────────────
+   SECTION 3 — HOW IT SOLVES
+───────────────────────────────────────────── */
+.solution-section {
+  padding: 88px 0;
+  background: var(--ink-2);
+}
+
+.solution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.solution-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.solution-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(26,86,219,0.12);
+  border: 1px solid rgba(26,86,219,0.22);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue-xl);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.solution-h { font-family: var(--dp); font-size: clamp(20px,4vw,28px); font-weight: 800; color: var(--white); letter-spacing: -0.5px; margin-bottom: 12px; }
+.solution-p { font-size: 14px; color: var(--g400); line-height: 1.65; margin-bottom: 20px; }
+
+.solution-bullets { display: flex; flex-direction: column; gap: 8px; }
+.solution-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--g300);
+}
+.solution-bullet-check { color: var(--green-l); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+.solution-mockup {
+  background: var(--ink-3);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.mockup-bar {
+  background: var(--ink-4);
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.mockup-dots { display: flex; gap: 5px; }
+.mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+.md-r { background: #FF5F57; } .md-y { background: #FEBC2E; } .md-g { background: #28C840; }
+.mockup-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--g500); flex: 1; text-align: center; }
+
+.mockup-body { padding: 18px; }
+
+/* grievance mockup rows */
+.grievance-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--ink-4);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.grievance-row:last-child { margin-bottom: 0; }
+
+.g-status {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.g-open { background: rgba(217,119,6,0.15); color: #FCD34D; border: 1px solid rgba(217,119,6,0.2); }
+.g-closed { background: rgba(5,150,105,0.15); color: #6EE7B7; border: 1px solid rgba(5,150,105,0.2); }
+.g-review { background: rgba(26,86,219,0.15); color: #93C5FD; border: 1px solid rgba(26,86,219,0.2); }
+
+.g-title { flex: 1; color: var(--g300); }
+.g-ward { font-size: 10px; color: var(--g500); flex-shrink: 0; }
+
+/* volunteer mockup */
+.vol-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.vol-stat {
+  background: var(--ink-4);
+  border-radius: 8px;
+  padding: 12px 10px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.vol-stat-n { font-family: var(--dp); font-size: 22px; font-weight: 800; color: var(--blue-l); }
+.vol-stat-l { font-size: 10px; color: var(--g500); margin-top: 2px; }
+
+.vol-member {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  background: var(--ink-4);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 7px;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+.vol-avatar {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.vol-name { flex: 1; color: var(--g300); font-weight: 500; }
+.vol-ward { color: var(--g500); font-size: 10px; }
+
+/* digital mockup */
+.digital-metric {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--ink-4);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.dm-label { font-size: 12px; color: var(--g400); flex: 1; }
+.dm-bar-wrap { width: 80px; height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+.dm-bar { height: 100%; border-radius: 2px; }
+.dm-val { font-family: var(--dp); font-size: 13px; font-weight: 700; color: var(--white); min-width: 36px; text-align: right; }
+
+/* ─────────────────────────────────────────────
+   SECTION 4 — PLATFORM OVERVIEW
+───────────────────────────────────────────── */
+.platform-section { padding: 88px 0; }
+
+.platform-modules {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.module-card {
+  padding: 26px 22px;
+  background: var(--ink-2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  transition: all 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+.module-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent-color, linear-gradient(90deg, var(--blue), var(--green-l)));
+  opacity: 0;
+  transition: opacity 0.22s;
+}
+.module-card:hover { border-color: rgba(255,255,255,0.11); transform: translateY(-2px); }
+.module-card:hover::after { opacity: 1; }
+
+.module-icon {
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.module-title {
+  font-family: var(--dp);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.module-desc { font-size: 13px; color: var(--g500); line-height: 1.6; margin-bottom: 14px; }
+
+.module-features { display: flex; flex-direction: column; gap: 6px; }
+.module-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--g400);
+}
+.mf-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue-l); flex-shrink: 0; margin-top: 6px; }
+
+/* ─────────────────────────────────────────────
+   SECTION 5 — USE CASES
+───────────────────────────────────────────── */
+.usecases-section {
+  padding: 88px 0;
+  background: var(--ink-2);
+}
+
+.usecase-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 28px;
+  padding-bottom: 4px;
+}
+.usecase-tabs::-webkit-scrollbar { display: none; }
+
+.uc-tab {
+  flex-shrink: 0;
+  padding: 9px 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  font-family: var(--dp);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--g500);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.uc-tab.active {
+  background: rgba(26,86,219,0.15);
+  border-color: rgba(26,86,219,0.3);
+  color: var(--blue-xl);
+}
+
+.uc-panel { display: none; }
+.uc-panel.active { display: grid; grid-template-columns: 1fr; gap: 24px; }
+
+.uc-content {}
+.uc-title { font-family: var(--dp); font-size: clamp(20px,4vw,28px); font-weight: 800; color: var(--white); letter-spacing: -0.5px; margin-bottom: 12px; }
+.uc-desc { font-size: 14px; color: var(--g400); line-height: 1.68; margin-bottom: 22px; }
+
+.uc-challenges { margin-bottom: 22px; }
+.uc-challenges-label { font-size: 11px; font-weight: 700; color: var(--g500); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+.uc-challenge {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--g400);
+  margin-bottom: 6px;
+}
+.uc-challenge-x { color: #EF4444; flex-shrink: 0; }
+
+.uc-solutions-label { font-size: 11px; font-weight: 700; color: var(--green-l); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+.uc-solution {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--g300);
+  margin-bottom: 6px;
+}
+.uc-solution-check { color: var(--green-l); flex-shrink: 0; }
+
+.uc-visual {
+  background: var(--ink-3);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 24px 20px;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION 6 — IMPLEMENTATION PROCESS
+───────────────────────────────────────────── */
+.process-section { padding: 88px 0; }
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 20px;
+  bottom: 20px;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(26,86,219,0.5), rgba(5,150,105,0.2), transparent);
+}
+
+.ps-step {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 40px;
+  position: relative;
+}
+.ps-step:last-child { padding-bottom: 0; }
+
+.ps-num {
+  width: 40px; height: 40px;
+  background: var(--ink-3);
+  border: 2px solid rgba(26,86,219,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--dp);
+  font-size: 14px; font-weight: 800;
+  color: var(--blue-l);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.ps-content { padding-top: 8px; }
+.ps-title { font-family: var(--dp); font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.ps-desc { font-size: 13px; color: var(--g500); line-height: 1.6; }
+.ps-duration {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 9px;
+  background: rgba(26,86,219,0.1);
+  border: 1px solid rgba(26,86,219,0.18);
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue-xl);
+}
+
+/* ─────────────────────────────────────────────
+   SECTION 7 — SECURITY
+───────────────────────────────────────────── */
+.security-section {
+  padding: 88px 0;
+  background: var(--ink-2);
+}
+
+.security-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.sec-card {
+  padding: 24px 20px;
+  background: var(--ink-3);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+}
+.sec-card-icon { font-size: 24px; margin-bottom: 12px; }
+.sec-card-title { font-family: var(--dp); font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 7px; }
+.sec-card-desc { font-size: 13px; color: var(--g500); line-height: 1.55; }
+
+.security-statement {
+  margin-top: 40px;
+  padding: 28px 24px;
+  background: rgba(5,150,105,0.06);
+  border: 1px solid rgba(5,150,105,0.16);
+  border-radius: 14px;
+  text-align: center;
+}
+.sec-stmt-title { font-family: var(--dp); font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.sec-stmt-desc { font-size: 14px; color: var(--g400); line-height: 1.65; max-width: 540px; margin: 0 auto; }
+
+/* ─────────────────────────────────────────────
+   SECTION 8 — FAQ
+───────────────────────────────────────────── */
+.faq-section { padding: 88px 0; }
+
+.faq-list { max-width: 680px; margin: 0 auto; }
+
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  font-family: var(--dp);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.faq-q:hover { color: var(--blue-xl); }
+
+.faq-chevron {
+  width: 20px; height: 20px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  transition: transform 0.25s, background 0.2s;
+}
+.faq-item.open .faq-chevron { transform: rotate(180deg); background: rgba(26,86,219,0.15); }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.32s ease, padding 0.2s;
+  font-size: 14px;
+  color: var(--g400);
+  line-height: 1.68;
+}
+.faq-item.open .faq-a { max-height: 240px; padding-bottom: 20px; }
+
+/* ─────────────────────────────────────────────
+   SECTION 9 — FINAL CTA
+───────────────────────────────────────────── */
+.cta-section {
+  padding: 88px 0;
+  background: var(--ink-2);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.cta-card {
+  background: linear-gradient(135deg, rgba(26,86,219,0.12) 0%, rgba(5,150,105,0.06) 100%);
+  border: 1px solid rgba(26,86,219,0.18);
+  border-radius: 24px;
+  padding: 48px 28px;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 320px; height: 200px;
+  background: radial-gradient(ellipse, rgba(26,86,219,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-h {
+  font-family: var(--dp);
+  font-size: clamp(24px,5vw,38px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--white);
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.cta-sub {
+  font-size: 15px;
+  color: var(--g400);
+  line-height: 1.65;
+  margin-bottom: 32px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.cta-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 440px;
+  margin: 0 auto 20px;
+  position: relative;
+}
+
+.form-field-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+
+.form-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--g500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input, .form-select {
+  padding: 13px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  font-family: var(--db);
+  font-size: 14px;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.18s;
+  -webkit-appearance: none;
+}
+.form-input::placeholder { color: var(--g600); }
+.form-input:focus, .form-select:focus { border-color: rgba(26,86,219,0.5); }
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath stroke='%2364748B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='m1 1 5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+  background-color: rgba(255,255,255,0.05);
+}
+.form-select option { background: var(--ink-3); }
+
+.form-privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 14px;
+  background: rgba(5,150,105,0.07);
+  border: 1px solid rgba(5,150,105,0.14);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--g400);
+  line-height: 1.5;
+  text-align: left;
+}
+.form-privacy-icon { flex-shrink: 0; color: var(--green-l); margin-top: 1px; }
+
+.cta-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+  color: var(--g600);
+  font-size: 12px;
+  max-width: 440px;
+  margin: 4px auto;
+}
+.cta-divider::before, .cta-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 32px 0;
+}
+
+/* ─────────────────────────────────────────────
+   FOUNDER / CREDIBILITY
+───────────────────────────────────────────── */
+.founder-section { padding: 88px 0; }
+
+.founder-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--ink-2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 32px 28px;
+  align-items: center;
+}
+
+.founder-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.founder-photo {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--green-l) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--dp);
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+}
+
+.founder-creds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.founder-cred {
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 5px;
+  font-size: 11px;
+  color: var(--g400);
+  font-weight: 500;
+}
+
+.founder-content {}
+.founder-quote {
+  font-size: 16px;
+  color: var(--g300);
+  line-height: 1.75;
+  font-style: italic;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 20px;
+}
+.founder-quote::before {
+  content: '"';
+  position: absolute;
+  left: 0; top: -4px;
+  font-size: 36px;
+  color: var(--blue);
+  opacity: 0.4;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+.founder-name { font-family: var(--dp); font-size: 16px; font-weight: 700; color: var(--white); }
+.founder-role { font-size: 13px; color: var(--g500); margin-top: 2px; }
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+.footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 56px 0 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  margin-bottom: 40px;
+}
+
+.footer-brand-col {}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.footer-brand-mark {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--blue), var(--green-l));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--dp); font-weight: 800; font-size: 13px; color: white;
+}
+.footer-brand-name { font-family: var(--dp); font-weight: 700; font-size: 16px; color: var(--white); }
+.footer-brand-name em { color: var(--blue-l); font-style: normal; }
+.footer-tagline { font-size: 13px; color: var(--g500); line-height: 1.55; max-width: 280px; margin-bottom: 20px; }
+
+.footer-col-title { font-family: var(--dp); font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 14px; }
+.footer-links { display: flex; flex-direction: column; gap: 9px; }
+.footer-links a { font-size: 13px; color: var(--g500); transition: color 0.15s; }
+.footer-links a:hover { color: var(--g300); }
+
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-legal { font-size: 12px; color: var(--g600); }
+.footer-legal a { color: var(--g500); }
+
+/* ─────────────────────────────────────────────
+   FLOATING ELEMENTS
+───────────────────────────────────────────── */
+
+/* WhatsApp FAB */
+.wa-fab {
+  position: fixed;
+  bottom: 84px;
+  right: 20px;
+  z-index: 890;
+  width: 52px; height: 52px;
+  background: #25D366;
+  border-radius: 15px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  text-decoration: none;
+  transition: all 0.2s;
+  animation: wa-glow 3.5s ease-in-out infinite;
+}
+.wa-fab:hover { transform: scale(1.06); }
+@keyframes wa-glow {
+  0%, 100% { box-shadow: 0 4px 16px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.3); }
+  50% { box-shadow: 0 4px 16px rgba(37,211,102,0.4), 0 0 0 8px rgba(37,211,102,0); }
+}
+
+/* Demo FAB */
+.demo-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 890;
+  height: 52px;
+  padding: 0 20px;
+  background: var(--blue);
+  border-radius: 15px;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 20px rgba(26,86,219,0.4);
+  text-decoration: none;
+  font-family: var(--dp);
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  transition: all 0.2s;
+  animation: demo-glow 3s ease-in-out infinite;
+}
+.demo-fab:hover { transform: scale(1.03); background: var(--blue-h); }
+@keyframes demo-glow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(26,86,219,0.4), 0 0 0 0 rgba(26,86,219,0.3); }
+  50% { box-shadow: 0 4px 20px rgba(26,86,219,0.4), 0 0 0 8px rgba(26,86,219,0); }
+}
+
+/* Sticky CTA bar — mobile */
+.sticky-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 800;
+  background: rgba(6,11,24,0.96);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 12px 16px;
+  display: flex;
+  gap: 10px;
+  transition: opacity 0.3s;
+}
+.sticky-bar.hidden { opacity: 0; pointer-events: none; }
+
+.sticky-btn {
+  flex: 1;
+  padding: 13px;
+  border-radius: 10px;
+  font-family: var(--dp);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.18s;
+}
+
+/* ─────────────────────────────────────────────
+   DESKTOP BREAKPOINTS
+───────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .topnav { height: 68px; }
+  .nav-links { display: flex; }
+  .nav-actions { display: flex; }
+  .hamburger { display: none; }
+  .sticky-bar { display: none; }
+
+  .hero-ctas { flex-direction: row; justify-content: center; }
+
+  .problems-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .solution-item { grid-template-columns: 1fr 1fr; }
+  .solution-item.flip .solution-mockup { order: -1; }
+
+  .platform-modules { grid-template-columns: repeat(2, 1fr); }
+
+  .uc-panel.active { grid-template-columns: 1fr 1fr; }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 40px;
+  }
+  .process-steps::before { display: none; }
+  .ps-step { padding-bottom: 0; }
+
+  .security-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .founder-card { grid-template-columns: auto 1fr; }
+  .founder-photo-wrap { align-items: flex-start; }
+  .founder-creds { justify-content: flex-start; }
+
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+  .footer-bottom { flex-direction: row; align-items: center; justify-content: space-between; }
+
+  .form-field-group { grid-template-columns: 1fr 1fr; }
+
+  .wa-fab { bottom: 32px; right: 28px; }
+  .demo-fab { bottom: 32px; right: 92px; }
+}
+
+@media (min-width: 1024px) {
+  .nav-inner { padding: 0 48px; }
+  .wrap { padding: 0 48px; }
+  .platform-modules { grid-template-columns: repeat(3, 1fr); }
+  .security-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ─────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────── */
+.mt-32 { margin-top: 32px; }
+.mt-40 { margin-top: 40px; }
+.mt-48 { margin-top: 48px; }
+.text-center { text-align: center; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rv, * { transition-duration: 0.01ms !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     TOP NAV
+═══════════════════════════════════════════ -->
+<nav class="topnav" id="topnav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" aria-label="IndianPol">
+      <div class="nav-logo-mark">IP</div>
+      <span class="nav-logo-name">Indian<em>Pol</em></span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#problems">Why IndianPol</a>
+      <a href="#platform">Platform</a>
+      <a href="#usecases">Use Cases</a>
+      <a href="#process">How It Works</a>
+      <a href="#faq">FAQ</a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="tel:+918052902267" class="btn btn-sm btn-ghost" style="gap:6px;">📞 8052902267</a>
+      <a href="https://wa.me/918052902267?text=Hi%2C%20I%20want%20to%20know%20more%20about%20IndianPol" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">💬 WhatsApp</a>
+      <a href="#contact" class="btn btn-sm btn-primary">Book a Demo</a>
+    </div>
+
+    <button class="hamburger" id="ham" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     MOBILE OVERLAY NAV
+═══════════════════════════════════════════ -->
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="nav-overlay-body">
+    <a class="nav-ol-item" href="#problems" onclick="closeNav()">
+      <div class="nav-ol-icon">⚠️</div>
+      <div><div class="nav-ol-title">Why IndianPol</div><div class="nav-ol-sub">Problems political leaders face today</div></div>
+    </a>
+    <a class="nav-ol-item" href="#platform" onclick="closeNav()">
+      <div class="nav-ol-icon">🏛️</div>
+      <div><div class="nav-ol-title">Platform</div><div class="nav-ol-sub">All six modules explained</div></div>
+    </a>
+    <a class="nav-ol-item" href="#usecases" onclick="closeNav()">
+      <div class="nav-ol-icon">👤</div>
+      <div><div class="nav-ol-title">Use Cases</div><div class="nav-ol-sub">For MLAs, MPs, Councillors and more</div></div>
+    </a>
+    <a class="nav-ol-item" href="#process" onclick="closeNav()">
+      <div class="nav-ol-icon">🗓️</div>
+      <div><div class="nav-ol-title">How It Works</div><div class="nav-ol-sub">Onboarding to operations in 7 days</div></div>
+    </a>
+    <a class="nav-ol-item" href="#security" onclick="closeNav()">
+      <div class="nav-ol-icon">🔐</div>
+      <div><div class="nav-ol-title">Security</div><div class="nav-ol-sub">How your data is protected</div></div>
+    </a>
+    <a class="nav-ol-item" href="#faq" onclick="closeNav()">
+      <div class="nav-ol-icon">❓</div>
+      <div><div class="nav-ol-title">FAQ</div><div class="nav-ol-sub">Common questions answered</div></div>
+    </a>
+  </div>
+  <div class="nav-overlay-foot">
+    <a href="#contact" class="btn btn-full btn-primary" onclick="closeNav()">🎯 Book a Private Demo</a>
+    <a href="https://wa.me/918052902267" target="_blank" rel="noopener" class="btn btn-full btn-wa">💬 Chat on WhatsApp</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — HERO
+═══════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines" aria-hidden="true"></div>
+
+  <!-- Ashoka-inspired rotating ring — background decoration -->
+  <div class="hero-wheel" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="200" cy="200" r="188" stroke="white" stroke-width="1.5" stroke-dasharray="10 8" opacity="0.6"/>
+      <!-- Middle ring -->
+      <circle cx="200" cy="200" r="148" stroke="white" stroke-width="1" stroke-dasharray="6 10" opacity="0.4"/>
+      <!-- Inner ring -->
+      <circle cx="200" cy="200" r="108" stroke="white" stroke-width="1.5" stroke-dasharray="8 7" opacity="0.5"/>
+      <!-- Innermost ring -->
+      <circle cx="200" cy="200" r="68" stroke="white" stroke-width="1" stroke-dasharray="4 8" opacity="0.3"/>
+      <!-- 24 Ashoka spokes — like the Dharma Chakra -->
+      <g stroke="white" stroke-width="1.2" opacity="0.45">
+        <line x1="200" y1="12" x2="200" y2="60"/>
+        <line x1="200" y1="340" x2="200" y2="388"/>
+        <line x1="12" y1="200" x2="60" y2="200"/>
+        <line x1="340" y1="200" x2="388" y2="200"/>
+        <line x1="56" y1="56" x2="91" y2="91"/>
+        <line x1="309" y1="309" x2="344" y2="344"/>
+        <line x1="344" y1="56" x2="309" y2="91"/>
+        <line x1="91" y1="309" x2="56" y2="344"/>
+        <!-- 45° spokes -->
+        <line x1="130" y1="19" x2="145" y2="64"/>
+        <line x1="255" y1="336" x2="270" y2="381"/>
+        <line x1="19" y1="270" x2="64" y2="255"/>
+        <line x1="336" y1="145" x2="381" y2="130"/>
+        <line x1="381" y1="270" x2="336" y2="255"/>
+        <line x1="64" y1="145" x2="19" y2="130"/>
+        <line x1="270" y1="19" x2="255" y2="64"/>
+        <line x1="145" y1="336" x2="130" y2="381"/>
+        <!-- 22.5° spokes -->
+        <line x1="76" y1="30" x2="97" y2="72"/>
+        <line x1="303" y1="328" x2="324" y2="370"/>
+        <line x1="30" y1="324" x2="72" y2="303"/>
+        <line x1="328" y1="97" x2="370" y2="76"/>
+        <line x1="370" y1="324" x2="328" y2="303"/>
+        <line x1="72" y1="97" x2="30" y2="76"/>
+        <line x1="324" y1="30" x2="303" y2="72"/>
+        <line x1="97" y1="328" x2="76" y2="370"/>
+      </g>
+      <!-- Center hub -->
+      <circle cx="200" cy="200" r="12" fill="white" opacity="0.35"/>
+      <circle cx="200" cy="200" r="6" fill="white" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+      Stop managing your<br>
+      constituency from<br>
+      <span class="accent-blue">WhatsApp.</span><br>
+      <span class="accent-green">Run it professionally.</span>
+    </h1>
+
+    <p class="hero-sub rv rv-d2">
+      IndianPol is the operating system built for Indian political leaders. Manage citizen grievances, coordinate volunteers, track ward-level operations, and build your digital presence — from one platform designed for how India's politics actually works.
+    </p>
+
+    <div class="hero-ctas rv rv-d3">
+      <a href="#contact" class="btn btn-lg btn-primary">
+        🎯 Book a Private Demo
+      </a>
+      <a href="#problems" class="btn btn-lg btn-outline">
+        See How It Works
+      </a>
+    </div>
+
+    <div class="hero-trust-row rv rv-d4">
+      <div class="hero-trust-item"><span class="check">✓</span> No election-only tool — built for year-round operations</div>
+      <div class="hero-trust-item"><span class="check">✓</span> Private consultation, no obligation</div>
+      <div class="hero-trust-item"><span class="check">✓</span> India-hosted, encrypted data</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHO IT'S FOR
+═══════════════════════════════════════════ -->
+<div class="who-band">
+  <div class="wrap">
+    <p class="who-label">Built for every level of political leadership</p>
+    <div class="who-pills">
+      <div class="who-pill"><span class="who-pill-icon">🏛️</span> MLAs &amp; MLCs</div>
+      <div class="who-pill"><span class="who-pill-icon">🇮🇳</span> MPs</div>
+      <div class="who-pill"><span class="who-pill-icon">🏙️</span> Municipal Councillors</div>
+      <div class="who-pill"><span class="who-pill-icon">🌾</span> Zila Panchayat Members</div>
+      <div class="who-pill"><span class="who-pill-icon">🏢</span> Party Organizations</div>
+      <div class="who-pill"><span class="who-pill-icon">📋</span> Constituency Offices</div>
+      <div class="who-pill"><span class="who-pill-icon">🤝</span> Political Consultants</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — PROBLEMS
+═══════════════════════════════════════════ -->
+<section class="problems-section" id="problems">
+  <div class="wrap">
+
+    <div class="sec-head rv">
+      <span class="label">The Real Problem</span>
+      <h2 class="display d-lg">Political leaders are managing complex operations with tools built for something else entirely.</h2>
+      <p class="body-md">Running a constituency of 2–5 lakh citizens is a serious management job. But most leaders are doing it with WhatsApp groups, paper registers, and spreadsheets — creating chaos, delays, and missed citizen needs.</p>
+    </div>
+
+    <div class="problems-grid">
+      <div class="problem-card rv">
+        <div class="problem-icon">📱</div>
+        <div>
+          <div class="problem-title">Citizen requests get lost in WhatsApp</div>
+          <div class="problem-desc">Hundreds of grievances arrive daily across multiple chats. There's no system, no tracking, no accountability. Important requests disappear without resolution.</div>
+        </div>
+      </div>
+      <div class="problem-card rv rv-d1">
+        <div class="problem-icon">🗂️</div>
+        <div>
+          <div class="problem-title">No system for tracking grievances</div>
+          <div class="problem-desc">Without a structured system, you don't know what's open, what's resolved, or which wards have the most urgent needs. Everything is reactive.</div>
+        </div>
+      </div>
+      <div class="problem-card rv rv-d2">
+        <div class="problem-icon">🧩</div>
+        <div>
+          <div class="problem-title">Volunteers are scattered and uncoordinated</div>
+          <div class="problem-desc">You have volunteers across 20+ wards, but mobilizing them requires phone calls, broadcast messages, and constant follow-ups with no central visibility.</div>
+        </div>
+      </div>
+      <div class="problem-card rv rv-d3">
+        <div class="problem-icon">🌐</div>
+        <div>
+          <div class="problem-title">Digital presence is inconsistent or absent</div>
+          <div class="problem-desc">Citizens search for their representative online and find nothing credible. An inconsistent or outdated online presence damages public trust silently.</div>
+        </div>
+      </div>
+      <div class="problem-card rv rv-d4">
+        <div class="problem-icon">📊</div>
+        <div>
+          <div class="problem-title">No data or visibility into constituency health</div>
+          <div class="problem-desc">You're making decisions based on gut feel — not facts. You don't know which wards are underserved, which issues are trending, or where your office is falling behind.</div>
+        </div>
+      </div>
+      <div class="problem-card rv rv-d5">
+        <div class="problem-icon">⏱️</div>
+        <div>
+          <div class="problem-title">Staff time is eaten by administrative chaos</div>
+          <div class="problem-desc">Your team spends hours on coordination, manual follow-ups, and information retrieval — time that should go toward actually serving citizens.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3 — HOW INDIANPOL SOLVES THEM
+═══════════════════════════════════════════ -->
+<section class="solution-section" id="solutions">
+  <div class="wrap">
+
+    <div class="sec-head rv">
+      <span class="label">The Solution</span>
+      <h2 class="display d-lg">One platform that brings order to every part of your political office.</h2>
+      <p class="body-md">IndianPol replaces fragmented tools with a single, professional operating system — purpose-built for how Indian political offices actually work.</p>
+    </div>
+
+    <div class="solution-list">
+
+      <!-- Grievance -->
+      <div class="solution-item rv">
+        <div class="solution-content">
+          <div class="solution-tag">🗂️ Grievance Management</div>
+          <h3 class="solution-h">Every citizen request tracked, assigned and resolved.</h3>
+          <p class="solution-p">No more lost WhatsApp messages. Every grievance — whether it arrives by phone, in-person, or online — is logged, assigned to the right staff member, tracked until resolution, and reported back to you in real time.</p>
+          <div class="solution-bullets">
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Intake from multiple channels into one system</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Assign by ward, category, or priority level</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Resolution deadlines with escalation alerts</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Constituent gets notified when their case is resolved</div>
+          </div>
+        </div>
+        <div class="solution-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dots"><div class="mockup-dot md-r"></div><div class="mockup-dot md-y"></div><div class="mockup-dot md-g"></div></div>
+            <div class="mockup-title">Grievance Tracker — Ward Dashboard</div>
+          </div>
+          <div class="mockup-body">
+            <div class="grievance-row"><div class="g-status g-open">Open</div><div class="g-title">Water supply disruption — main road</div><div class="g-ward">Ward 4</div></div>
+            <div class="grievance-row"><div class="g-status g-review">Review</div><div class="g-title">Street light not working — sector B</div><div class="g-ward">Ward 7</div></div>
+            <div class="grievance-row"><div class="g-status g-closed">Resolved</div><div class="g-title">Pension application follow-up</div><div class="g-ward">Ward 2</div></div>
+            <div class="grievance-row"><div class="g-status g-open">Open</div><div class="g-title">Road pothole — near school gate</div><div class="g-ward">Ward 11</div></div>
+            <div class="grievance-row"><div class="g-status g-closed">Resolved</div><div class="g-title">Scholarship document forwarded</div><div class="g-ward">Ward 9</div></div>
+            <div class="grievance-row"><div class="g-status g-review">Review</div><div class="g-title">Drainage overflow — monsoon issue</div><div class="g-ward">Ward 6</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Volunteers -->
+      <div class="solution-item flip rv">
+        <div class="solution-content">
+          <div class="solution-tag">🧩 Volunteer Management</div>
+          <h3 class="solution-h">Turn scattered names into an organized, deployable network.</h3>
+          <p class="solution-p">From a list of contacts to a professional volunteer network. Onboard your workers, assign them to wards, give them tasks, and coordinate events — all from your phone. Know who's active, who's unavailable, and where you need more coverage.</p>
+          <div class="solution-bullets">
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Structured ward-wise volunteer database</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Event coordination with task assignment</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Attendance and activity tracking</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Broadcast messaging to specific groups</div>
+          </div>
+        </div>
+        <div class="solution-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dots"><div class="mockup-dot md-r"></div><div class="mockup-dot md-y"></div><div class="mockup-dot md-g"></div></div>
+            <div class="mockup-title">Volunteer Network — Command View</div>
+          </div>
+          <div class="mockup-body">
+            <div class="vol-stat-row">
+              <div class="vol-stat"><div class="vol-stat-n">124</div><div class="vol-stat-l">Total</div></div>
+              <div class="vol-stat"><div class="vol-stat-n" style="color:var(--green-l);">89</div><div class="vol-stat-l">Active</div></div>
+              <div class="vol-stat"><div class="vol-stat-n" style="color:var(--amber);">14</div><div class="vol-stat-l">Wards</div></div>
+            </div>
+            <div class="vol-member"><div class="vol-avatar" style="background:rgba(26,86,219,0.25);color:var(--blue-xl);">RK</div><div class="vol-name">Ramesh Kumar</div><div class="vol-ward">Ward 3 Lead</div></div>
+            <div class="vol-member"><div class="vol-avatar" style="background:rgba(5,150,105,0.25);color:var(--green-l);">PM</div><div class="vol-name">Priya Mishra</div><div class="vol-ward">Ward 7</div></div>
+            <div class="vol-member"><div class="vol-avatar" style="background:rgba(245,158,11,0.2);color:#FCD34D;">AS</div><div class="vol-name">Arvind Singh</div><div class="vol-ward">Ward 11</div></div>
+            <div class="vol-member"><div class="vol-avatar" style="background:rgba(168,85,247,0.2);color:#C084FC;">NP</div><div class="vol-name">Neha Pandey</div><div class="vol-ward">Ward 5</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital Presence -->
+      <div class="solution-item rv">
+        <div class="solution-content">
+          <div class="solution-tag">🌐 Digital Presence</div>
+          <h3 class="solution-h">A professional digital identity that builds trust year-round.</h3>
+          <p class="solution-p">Citizens search for their representative online. What they find shapes their opinion. IndianPol ensures you have a professional website, consistent social media activity, and a public communications record that reflects your work accurately.</p>
+          <div class="solution-bullets">
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Custom constituency or leader website</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Managed social media publishing</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> Press announcements and public updates</div>
+            <div class="solution-bullet"><span class="solution-bullet-check">✓</span> WhatsApp broadcast integration</div>
+          </div>
+        </div>
+        <div class="solution-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dots"><div class="mockup-dot md-r"></div><div class="mockup-dot md-y"></div><div class="mockup-dot md-g"></div></div>
+            <div class="mockup-title">Digital Presence — Monthly Overview</div>
+          </div>
+          <div class="mockup-body">
+            <div class="digital-metric">
+              <div class="dm-label">Website Visitors</div>
+              <div class="dm-bar-wrap"><div class="dm-bar" style="width:72%;background:var(--blue-l);"></div></div>
+              <div class="dm-val">4,280</div>
+            </div>
+            <div class="digital-metric">
+              <div class="dm-label">WhatsApp Reach</div>
+              <div class="dm-bar-wrap"><div class="dm-bar" style="width:88%;background:var(--green-l);"></div></div>
+              <div class="dm-val">12,400</div>
+            </div>
+            <div class="digital-metric">
+              <div class="dm-label">Social Engagement</div>
+              <div class="dm-bar-wrap"><div class="dm-bar" style="width:55%;background:#A855F7;"></div></div>
+              <div class="dm-val">3,160</div>
+            </div>
+            <div class="digital-metric">
+              <div class="dm-label">Press Mentions</div>
+              <div class="dm-bar-wrap"><div class="dm-bar" style="width:40%;background:var(--amber);"></div></div>
+              <div class="dm-val">18</div>
+            </div>
+            <div style="margin-top:12px;padding:10px 12px;background:rgba(5,150,105,0.08);border:1px solid rgba(5,150,105,0.15);border-radius:8px;font-size:11px;color:var(--green-l);">
+              ↑ Overall digital reach up 34% vs last month
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4 — PLATFORM OVERVIEW
+═══════════════════════════════════════════ -->
+<section class="platform-section" id="platform">
+  <div class="wrap">
+
+    <div class="sec-head center rv">
+      <span class="label">Full Platform</span>
+      <h2 class="display d-lg">Six modules. One operating system.</h2>
+      <p class="body-md">Each module solves a specific operational challenge. Together they give you complete visibility and control over every part of your political office.</p>
+    </div>
+
+    <div class="platform-modules">
+
+      <div class="module-card rv" style="--accent-color: linear-gradient(90deg, #1A56DB, #3B82F6);">
+        <div class="module-icon" style="background:rgba(26,86,219,0.12);border:1px solid rgba(26,86,219,0.2);">🗂️</div>
+        <div class="module-title">Constituency CRM</div>
+        <div class="module-desc">A structured database of your citizens, ward leaders, and key contacts — with complete interaction history.</div>
+        <div class="module-features">
+          <div class="module-feature"><div class="mf-dot"></div>Ward-wise citizen records with full case history</div>
+          <div class="module-feature"><div class="mf-dot"></div>Grievance intake, assignment, escalation, and resolution</div>
+          <div class="module-feature"><div class="mf-dot"></div>Task management for constituency office staff</div>
+        </div>
+      </div>
+
+      <div class="module-card rv rv-d1" style="--accent-color: linear-gradient(90deg, #059669, #10B981);">
+        <div class="module-icon" style="background:rgba(5,150,105,0.12);border:1px solid rgba(5,150,105,0.2);">🧩</div>
+        <div class="module-title">Volunteer Management</div>
+        <div class="module-desc">Onboard, organize, and mobilize your volunteer network across all wards from one central system.</div>
+        <div class="module-features">
+          <div class="module-feature"><div class="mf-dot" style="background:var(--green-l);"></div>Volunteer profiles, ward assignments, skill tags</div>
+          <div class="module-feature"><div class="mf-dot" style="background:var(--green-l);"></div>Event coordination with task lists and check-ins</div>
+          <div class="module-feature"><div class="mf-dot" style="background:var(--green-l);"></div>Group broadcast messaging with delivery tracking</div>
+        </div>
+      </div>
+
+      <div class="module-card rv rv-d2" style="--accent-color: linear-gradient(90deg, #7C3AED, #A855F7);">
+        <div class="module-icon" style="background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.2);">🌐</div>
+        <div class="module-title">Digital Presence</div>
+        <div class="module-desc">Professional website, managed social media, and consistent content — all maintained for you.</div>
+        <div class="module-features">
+          <div class="module-feature"><div class="mf-dot" style="background:#A855F7;"></div>Custom constituency or leader website</div>
+          <div class="module-feature"><div class="mf-dot" style="background:#A855F7;"></div>Social media calendar and content publishing</div>
+          <div class="module-feature"><div class="mf-dot" style="background:#A855F7;"></div>WhatsApp broadcast management</div>
+        </div>
+      </div>
+
+      <div class="module-card rv rv-d3" style="--accent-color: linear-gradient(90deg, #D97706, #F59E0B);">
+        <div class="module-icon" style="background:rgba(217,119,6,0.12);border:1px solid rgba(217,119,6,0.2);">📊</div>
+        <div class="module-title">Constituency Analytics</div>
+        <div class="module-desc">Real data on what's happening across your wards — so your decisions are based on evidence, not assumptions.</div>
+        <div class="module-features">
+          <div class="module-feature"><div class="mf-dot" style="background:var(--amber);"></div>Grievance resolution rates and trends</div>
+          <div class="module-feature"><div class="mf-dot" style="background:var(--amber);"></div>Ward-level comparison dashboards</div>
+          <div class="module-feature"><div class="mf-dot" style="background:var(--amber);"></div>Citizen engagement and reach reports</div>
+        </div>
+      </div>
+
+      <div class="module-card rv rv-d4" style="--accent-color: linear-gradient(90deg, #0891B2, #06B6D4);">
+        <div class="module-icon" style="background:rgba(8,145,178,0.12);border:1px solid rgba(8,145,178,0.2);">📣</div>
+        <div class="module-title">Communications Hub</div>
+        <div class="module-desc">Reach the right citizens with the right message — across SMS, WhatsApp, and email — from one place.</div>
+        <div class="module-features">
+          <div class="module-feature"><div class="mf-dot" style="background:#06B6D4;"></div>Segmented outreach by ward, issue, or interest</div>
+          <div class="module-feature"><div class="mf-dot" style="background:#06B6D4;"></div>Automated follow-ups for common request types</div>
+          <div class="module-feature"><div class="mf-dot" style="background:#06B6D4;"></div>Delivery tracking and engagement reporting</div>
+        </div>
+      </div>
+
+      <div class="module-card rv rv-d5" style="--accent-color: linear-gradient(90deg, #DC2626, #EF4444);">
+        <div class="module-icon" style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.18);">⭐</div>
+        <div class="module-title">Reputation Management</div>
+        <div class="module-desc">Monitor what citizens are saying, respond to public feedback, and protect your credibility proactively.</div>
+        <div class="module-features">
+          <div class="module-feature"><div class="mf-dot" style="background:#EF4444;"></div>Public sentiment monitoring</div>
+          <div class="module-feature"><div class="mf-dot" style="background:#EF4444;"></div>Online review and mention management</div>
+          <div class="module-feature"><div class="mf-dot" style="background:#EF4444;"></div>Crisis communication templates</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-48 text-center rv">
+      <a href="#contact" class="btn btn-lg btn-primary">See the Full Platform in a Private Demo</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 5 — USE CASES
+═══════════════════════════════════════════ -->
+<section class="usecases-section" id="usecases">
+  <div class="wrap">
+
+    <div class="sec-head rv">
+      <span class="label">Use Cases</span>
+      <h2 class="display d-lg">Built for every type of political leader.</h2>
+      <p class="body-md">Each type of leader faces different operational challenges. IndianPol is designed to address all of them specifically.</p>
+    </div>
+
+    <div class="usecase-tabs" role="tablist">
+      <button class="uc-tab active" onclick="switchUC(this,'uc-mla')" role="tab">MLA / MLC</button>
+      <button class="uc-tab" onclick="switchUC(this,'uc-mp')" role="tab">MP</button>
+      <button class="uc-tab" onclick="switchUC(this,'uc-councillor')" role="tab">Councillor</button>
+      <button class="uc-tab" onclick="switchUC(this,'uc-panchayat')" role="tab">Panchayat Leader</button>
+      <button class="uc-tab" onclick="switchUC(this,'uc-org')" role="tab">Party Organization</button>
+    </div>
+
+    <!-- MLA -->
+    <div class="uc-panel active" id="uc-mla" role="tabpanel">
+      <div class="uc-content">
+        <div class="uc-title">The MLA's Operating Challenge</div>
+        <div class="uc-desc">An MLA represents 2–4 lakh citizens across dozens of wards. The volume of citizen requests, government liaison work, party obligations, and development tracking makes this one of the most complex operational roles in Indian public life — with almost no professional systems to support it.</div>
+        <div class="uc-challenges">
+          <div class="uc-challenges-label">Without IndianPol</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Hundreds of WhatsApp messages a day with no system</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>No visibility into which wards are underserved</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Volunteer mobilization requires constant manual effort</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>No professional digital identity between elections</div>
+        </div>
+        <div class="uc-solutions-label">With IndianPol</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>All citizen requests logged, assigned, and tracked to resolution</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Ward-level dashboard showing open cases and trends</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Volunteer network organized and deployable at a tap</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Professional online presence maintained year-round</div>
+        <div style="margin-top:20px;">
+          <a href="#contact" class="btn btn-md btn-primary">Book a Demo for MLAs →</a>
+        </div>
+      </div>
+      <div class="uc-visual">
+        <div style="font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;">MLA Office — Weekly Summary</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="font-size:12px;color:var(--g400);">Grievances this week</div>
+            <div style="font-family:var(--dp);font-size:17px;font-weight:800;color:var(--blue-l);">186</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="font-size:12px;color:var(--g400);">Resolved</div>
+            <div style="font-family:var(--dp);font-size:17px;font-weight:800;color:var(--green-l);">142</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="font-size:12px;color:var(--g400);">Pending escalation</div>
+            <div style="font-family:var(--dp);font-size:17px;font-weight:800;color:var(--amber);">12</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="font-size:12px;color:var(--g400);">Volunteers deployed</div>
+            <div style="font-family:var(--dp);font-size:17px;font-weight:800;color:var(--white);">67</div>
+          </div>
+          <div style="padding:10px 12px;background:rgba(5,150,105,0.08);border:1px solid rgba(5,150,105,0.15);border-radius:8px;font-size:11px;color:var(--green-l);text-align:center;">
+            Resolution rate: 76% — up 12% from last week
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MP -->
+    <div class="uc-panel" id="uc-mp" role="tabpanel">
+      <div class="uc-content">
+        <div class="uc-title">The MP's Scale Challenge</div>
+        <div class="uc-desc">An MP constituency can have 15–25 lakh citizens, multiple assembly segments, and thousands of volunteers. Managing this at scale requires systems and structures that go far beyond what a typical office can handle manually.</div>
+        <div class="uc-challenges">
+          <div class="uc-challenges-label">Without IndianPol</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Segment coordinators working in silos with no shared system</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>No unified view across the entire constituency</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Development project tracking done manually</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Communications inconsistent across segments</div>
+        </div>
+        <div class="uc-solutions-label">With IndianPol</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Segment-wise access for coordinators with centralized reporting</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Unified constituency dashboard across all assembly segments</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Development project progress logged and tracked</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Consistent, centrally-managed communications strategy</div>
+        <div style="margin-top:20px;">
+          <a href="#contact" class="btn btn-md btn-primary">Book a Demo for MPs →</a>
+        </div>
+      </div>
+      <div class="uc-visual">
+        <div style="font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;">MP Constituency — Segment View</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="flex:1;font-size:12px;color:var(--g400);">Segment A — Vidhansabha 1</div>
+            <div style="padding:3px 8px;background:rgba(5,150,105,0.15);border-radius:4px;font-size:10px;color:var(--green-l);font-weight:700;">Active</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="flex:1;font-size:12px;color:var(--g400);">Segment B — Vidhansabha 2</div>
+            <div style="padding:3px 8px;background:rgba(26,86,219,0.15);border-radius:4px;font-size:10px;color:var(--blue-xl);font-weight:700;">Review</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="flex:1;font-size:12px;color:var(--g400);">Segment C — Vidhansabha 3</div>
+            <div style="padding:3px 8px;background:rgba(5,150,105,0.15);border-radius:4px;font-size:10px;color:var(--green-l);font-weight:700;">Active</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="flex:1;font-size:12px;color:var(--g400);">Segment D — Vidhansabha 4</div>
+            <div style="padding:3px 8px;background:rgba(217,119,6,0.15);border-radius:4px;font-size:10px;color:#FCD34D;font-weight:700;">Needs Attention</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Councillor -->
+    <div class="uc-panel" id="uc-councillor" role="tabpanel">
+      <div class="uc-content">
+        <div class="uc-title">The Councillor's Day-to-Day Reality</div>
+        <div class="uc-desc">Municipal councillors deal with extremely local, immediate citizen needs — roads, water, garbage, lighting — and are accountable to a dense urban or semi-urban population. The volume of daily requests can be overwhelming without a system.</div>
+        <div class="uc-challenges">
+          <div class="uc-challenges-label">Without IndianPol</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Complaints come from everywhere and go untracked</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Municipal department coordination is informal and slow</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Citizens have no way to check status of their complaint</div>
+        </div>
+        <div class="uc-solutions-label">With IndianPol</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Structured intake for every complaint type with categorization</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Departmental escalation workflows built in</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Citizens notified of resolution automatically</div>
+        <div style="margin-top:20px;">
+          <a href="#contact" class="btn btn-md btn-primary">Book a Demo for Councillors →</a>
+        </div>
+      </div>
+      <div class="uc-visual">
+        <div style="font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;">Ward Office — Issue Categories</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="digital-metric"><div class="dm-label">Water &amp; Drainage</div><div class="dm-bar-wrap"><div class="dm-bar" style="width:80%;background:var(--blue-l);"></div></div><div class="dm-val">34</div></div>
+          <div class="digital-metric"><div class="dm-label">Roads &amp; Potholes</div><div class="dm-bar-wrap"><div class="dm-bar" style="width:60%;background:var(--amber);"></div></div><div class="dm-val">26</div></div>
+          <div class="digital-metric"><div class="dm-label">Street Lighting</div><div class="dm-bar-wrap"><div class="dm-bar" style="width:45%;background:#A855F7;"></div></div><div class="dm-val">19</div></div>
+          <div class="digital-metric"><div class="dm-label">Garbage Collection</div><div class="dm-bar-wrap"><div class="dm-bar" style="width:35%;background:var(--green-l);"></div></div><div class="dm-val">15</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panchayat -->
+    <div class="uc-panel" id="uc-panchayat" role="tabpanel">
+      <div class="uc-content">
+        <div class="uc-title">Rural Leadership in a Digital Age</div>
+        <div class="uc-desc">Panchayat leaders operate in rural areas with unique challenges — limited connectivity, dispersed populations, government scheme coordination, and the need to track development work at the gram level.</div>
+        <div class="uc-challenges">
+          <div class="uc-challenges-label">Without IndianPol</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Government scheme beneficiary tracking done on paper</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>No system to coordinate with block-level offices</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Development work progress not formally documented</div>
+        </div>
+        <div class="uc-solutions-label">With IndianPol</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Beneficiary database with scheme-wise records</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Development project tracking with milestones</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Low-bandwidth mobile-first design for rural connectivity</div>
+        <div style="margin-top:20px;">
+          <a href="#contact" class="btn btn-md btn-primary">Book a Demo for Panchayat Leaders →</a>
+        </div>
+      </div>
+      <div class="uc-visual">
+        <div style="font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;">Gram Panchayat — Scheme Tracker</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="flex:1;font-size:12px;color:var(--g400);">PM Awas Yojana</div>
+            <div style="font-size:12px;color:var(--green-l);font-weight:700;">142/180 enrolled</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="flex:1;font-size:12px;color:var(--g400);">Kisan Samman Nidhi</div>
+            <div style="font-size:12px;color:var(--blue-l);font-weight:700;">98/140 verified</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
+            <div style="flex:1;font-size:12px;color:var(--g400);">Ujjwala Yojana</div>
+            <div style="font-size:12px;color:var(--amber);font-weight:700;">67/120 pending</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Party Org -->
+    <div class="uc-panel" id="uc-org" role="tabpanel">
+      <div class="uc-content">
+        <div class="uc-title">Coordinating Across a Party Network</div>
+        <div class="uc-desc">Political organizations managing multiple leaders, multiple constituencies, and large volunteer networks need centralized coordination while giving local leaders the autonomy they need to operate effectively.</div>
+        <div class="uc-challenges">
+          <div class="uc-challenges-label">Without IndianPol</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>No unified view across leaders and constituencies</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>Volunteer lists duplicated and inconsistent</div>
+          <div class="uc-challenge"><span class="uc-challenge-x">✕</span>No centralized communication infrastructure</div>
+        </div>
+        <div class="uc-solutions-label">With IndianPol</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Multi-constituency organization dashboard</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Centralized volunteer database with local access controls</div>
+        <div class="uc-solution"><span class="uc-solution-check">✓</span>Organization-wide communications management</div>
+        <div style="margin-top:20px;">
+          <a href="#contact" class="btn btn-md btn-primary">Book a Demo for Organizations →</a>
+        </div>
+      </div>
+      <div class="uc-visual">
+        <div style="font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;">Party Network — Constituency Overview</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px;">
+            <div style="text-align:center;padding:12px 8px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);"><div style="font-family:var(--dp);font-size:20px;font-weight:800;color:var(--blue-l);">24</div><div style="font-size:10px;color:var(--g500);">Leaders</div></div>
+            <div style="text-align:center;padding:12px 8px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);"><div style="font-family:var(--dp);font-size:20px;font-weight:800;color:var(--green-l);">3,200</div><div style="font-size:10px;color:var(--g500);">Volunteers</div></div>
+            <div style="text-align:center;padding:12px 8px;background:var(--ink-4);border-radius:8px;border:1px solid rgba(255,255,255,0.05);"><div style="font-family:var(--dp);font-size:20px;font-weight:800;color:var(--amber);">18</div><div style="font-size:10px;color:var(--g500);">Districts</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 6 — IMPLEMENTATION PROCESS
+═══════════════════════════════════════════ -->
+<section class="process-section" id="process">
+  <div class="wrap">
+
+    <div class="sec-head rv">
+      <span class="label">Implementation</span>
+      <h2 class="display d-lg">Fully operational in 7 days. We handle everything.</h2>
+      <p class="body-md">We know political leaders don't have time to learn complex software. Our implementation team handles the entire setup — your team just shows up and starts working.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="ps-step rv">
+        <div class="ps-num">1</div>
+        <div class="ps-content">
+          <div class="ps-title">Private Strategy Consultation</div>
+          <div class="ps-desc">We begin with a confidential 60-minute session to understand your constituency structure, current workflows, specific challenges, and goals. Every setup is custom — not a generic onboarding.</div>
+          <div class="ps-duration">Day 1</div>
+        </div>
+      </div>
+      <div class="ps-step rv rv-d1">
+        <div class="ps-num">2</div>
+        <div class="ps-content">
+          <div class="ps-title">Platform Configuration</div>
+          <div class="ps-desc">We configure the platform around your ward structure, staff roles, and communication preferences. Existing contact lists, volunteer data, and records are migrated by our team.</div>
+          <div class="ps-duration">Days 2–4</div>
+        </div>
+      </div>
+      <div class="ps-step rv rv-d2">
+        <div class="ps-num">3</div>
+        <div class="ps-content">
+          <div class="ps-title">Team Training</div>
+          <div class="ps-desc">Your constituency office staff and volunteer leads receive hands-on training. We use your actual data and real scenarios from your context. Most teams are comfortable within 2–3 hours.</div>
+          <div class="ps-duration">Days 5–6</div>
+        </div>
+      </div>
+      <div class="ps-step rv rv-d3">
+        <div class="ps-num">4</div>
+        <div class="ps-content">
+          <div class="ps-title">Go Live with Dedicated Support</div>
+          <div class="ps-desc">You go live with a dedicated account manager who is available throughout your subscription. Monthly check-in calls, platform updates, and strategic guidance are all included.</div>
+          <div class="ps-duration">Day 7 onward</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-48 rv">
+      <div style="background:var(--ink-2);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px 24px;max-width:640px;">
+        <div style="font-family:var(--dp);font-size:16px;font-weight:700;color:var(--white);margin-bottom:8px;">No long-term lock-in. No complex contracts.</div>
+        <div style="font-size:14px;color:var(--g400);line-height:1.65;">IndianPol plans are structured as quarterly or annual subscriptions with a clear pricing conversation during your consultation. We believe in earning your trust through performance, not contractual obligation.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDER CREDIBILITY
+═══════════════════════════════════════════ -->
+<section class="founder-section" id="about">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="label">Why We Built This</span>
+      <h2 class="display d-md">A word from the founders.</h2>
+    </div>
+    <div class="founder-card rv">
+      <div class="founder-photo-wrap">
+        <div class="founder-photo">IP</div>
+        <div class="founder-creds">
+          <div class="founder-cred">Political Strategy</div>
+          <div class="founder-cred">SaaS Founder</div>
+          <div class="founder-cred">10+ yrs India Ops</div>
+        </div>
+      </div>
+      <div class="founder-content">
+        <p class="founder-quote">
+          We spent years working alongside political offices across India and saw the same problem everywhere — incredibly capable leaders, trying to serve millions of citizens, using tools built for something else entirely. WhatsApp for grievances. Excel for volunteers. Nothing for digital presence. We built IndianPol because India's political leaders deserve professional infrastructure — not because it's a good business idea, but because better-organized political offices lead to better-served citizens.
+        </p>
+        <div class="founder-name">Founders, IndianPol</div>
+        <div class="founder-role">Building the operating system for Indian political leadership</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 7 — SECURITY
+═══════════════════════════════════════════ -->
+<section class="security-section" id="security">
+  <div class="wrap">
+
+    <div class="sec-head rv">
+      <span class="label">Security &amp; Privacy</span>
+      <h2 class="display d-lg">Your constituency data is sensitive. We treat it that way.</h2>
+      <p class="body-md">Political data requires a higher standard of protection. IndianPol is built from the ground up with security, confidentiality, and data sovereignty as core requirements — not afterthoughts.</p>
+    </div>
+
+    <div class="security-grid">
+      <div class="sec-card rv">
+        <div class="sec-card-icon">🔐</div>
+        <div class="sec-card-title">End-to-End Encryption</div>
+        <div class="sec-card-desc">All data in transit and at rest is encrypted using AES-256 and TLS 1.3. Your citizen data is never readable by anyone outside your authorized office team.</div>
+      </div>
+      <div class="sec-card rv rv-d1">
+        <div class="sec-card-icon">🇮🇳</div>
+        <div class="sec-card-title">India-Based Data Hosting</div>
+        <div class="sec-card-desc">All data is stored on servers located within India, in compliance with applicable data protection requirements. Your constituency data never leaves Indian jurisdiction.</div>
+      </div>
+      <div class="sec-card rv rv-d2">
+        <div class="sec-card-icon">👥</div>
+        <div class="sec-card-title">Role-Based Access Control</div>
+        <div class="sec-card-desc">You control exactly who in your office can see, edit, or export which data. Ward-level access restrictions ensure appropriate data boundaries within your team.</div>
+      </div>
+      <div class="sec-card rv rv-d3">
+        <div class="sec-card-icon">📋</div>
+        <div class="sec-card-title">Full Audit Trail</div>
+        <div class="sec-card-desc">Every action taken within your platform is logged with a timestamp and user record. You always know who accessed or modified what, and when.</div>
+      </div>
+    </div>
+
+    <div class="security-statement rv">
+      <div class="sec-stmt-title">🔒 IndianPol never sells, shares, or uses your constituency data for any purpose other than delivering your subscription service.</div>
+      <div class="sec-stmt-desc">We do not run ads. We do not analyze your political data for third parties. We do not use your citizen information for research or targeting. Your data is yours — always.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 8 — FAQ
+═══════════════════════════════════════════ -->
+<section class="faq-section" id="faq">
+  <div class="wrap">
+
+    <div class="sec-head center rv">
+      <span class="label">FAQ</span>
+      <h2 class="display d-lg">Honest answers to the questions we hear most.</h2>
+    </div>
+
+    <div class="faq-list rv">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What exactly is IndianPol and what does it do?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">IndianPol is a political operating system — a professional platform that helps political leaders manage their constituency operations in one place. It handles citizen grievance tracking, volunteer coordination, constituency communications, digital presence, and office analytics. Think of it as the back-end system that makes a political office run professionally — the same way a CRM runs a sales organization.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Is IndianPol only useful during election campaigns?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">No — and this is the most important thing to understand about IndianPol. It is explicitly not an election campaign tool. It is built for year-round constituency management. Leaders who use it throughout their term build stronger citizen relationships, more organized offices, and more effective operations — which naturally supports credibility at election time, but that's a byproduct, not the purpose.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          How long does it take to set up and start using IndianPol?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">Most leaders are fully operational within 7 days of starting. Our implementation team handles all configuration, data migration, and training. Your office staff typically needs 2–3 hours of training before they're comfortable using the platform independently. We stay actively involved throughout, not just in the first week.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Is my data safe? Who has access to it?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">Your data is encrypted, hosted on India-based servers, and accessible only to users in your office that you explicitly authorize. IndianPol's operational team has strict, limited access only for support purposes — never for data analysis, sharing, or any other use. We do not sell or share data. We do not use your political or citizen data for any purpose other than delivering your service.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          How much does IndianPol cost?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">Pricing is structured around your specific situation — constituency size, number of users, which modules you need, and the level of support required. We discuss pricing transparently during your consultation call. We do not publish a pricing page because every leader's needs are genuinely different, and we'd rather give you an accurate number than a confusing tiered table. Request a consultation and we'll be straightforward about cost.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Does IndianPol work on mobile? My team uses phones, not computers.
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">Yes — IndianPol is designed mobile-first. The entire platform works on Android and iOS smartphones. Your team can log grievances, update statuses, coordinate volunteers, and communicate with citizens entirely from their phones. Most constituency office work happens in the field, not at a desk — our platform is built around that reality.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What if we already use WhatsApp and Excel for everything?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">Most of our clients start exactly there. We migrate existing contact lists, volunteer records, and any structured data you have. WhatsApp can still be used for informal communication — IndianPol sits alongside it, but gives every important request a formal track, an assigned owner, and a resolution record. Within a few weeks, most teams find they rely on IndianPol rather than multiple disconnected tools.</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 9 — FINAL CTA / LEAD FORM
+═══════════════════════════════════════════ -->
+<section class="cta-section" id="contact">
+  <div class="wrap">
+    <div class="cta-card rv">
+
+      <p class="label" style="margin-bottom:12px;display:block;">Private Consultation</p>
+      <h2 class="cta-h">Book a private walkthrough.<br>No pressure. No obligation.</h2>
+      <p class="cta-sub">Share a few details and we'll schedule a private, confidential session — tailored to your constituency, your role, and your specific operational challenges.</p>
+
+      <form class="cta-form" id="consultForm" action="https://formspree.io/f/mbdeawgv" method="POST" onsubmit="handleSubmit(event)" novalidate>
+        <!-- Formspree hidden subject -->
+        <input type="hidden" name="_subject" value="New IndianPol Demo Request">
+        <input type="hidden" name="_replyto" id="h-replyto">
+
+        <div class="form-field-group">
+          <div class="form-field">
+            <label class="form-label" for="f-name">Full Name *</label>
+            <input class="form-input" type="text" id="f-name" name="name" placeholder="Your full name" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-role">Your Role *</label>
+            <select class="form-select" id="f-role" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option>Member of Parliament (MP)</option>
+              <option>Member of Legislative Assembly (MLA)</option>
+              <option>Member of Legislative Council (MLC)</option>
+              <option>Municipal Councillor</option>
+              <option>Zila Panchayat Member</option>
+              <option>Party Organization</option>
+              <option>Constituency Office Staff</option>
+              <option>Political Consultant</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-constituency">Constituency Name</label>
+          <input class="form-input" type="text" id="f-constituency" name="constituency" placeholder="e.g. Lucknow East, Pune Municipal Ward 12">
+        </div>
+
+        <div class="form-field-group">
+          <div class="form-field">
+            <label class="form-label" for="f-state">State *</label>
+            <select class="form-select" id="f-state" name="state" required>
+              <option value="" disabled selected>Select state</option>
+              <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
+              <option>Bihar</option><option>Chhattisgarh</option><option>Goa</option><option>Gujarat</option>
+              <option>Haryana</option><option>Himachal Pradesh</option><option>Jharkhand</option>
+              <option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option>
+              <option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option>
+              <option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Punjab</option>
+              <option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option>
+              <option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option>
+              <option>Uttarakhand</option><option>West Bengal</option><option>Delhi</option>
+              <option>Jammu &amp; Kashmir</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-mobile">Mobile Number *</label>
+            <input class="form-input" type="tel" id="f-mobile" name="mobile" placeholder="+91 XXXXX XXXXX" autocomplete="tel" required>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-challenge">Biggest operational challenge right now?</label>
+          <select class="form-select" id="f-challenge" name="challenge">
+            <option value="" disabled selected>Select your main challenge</option>
+            <option>Managing citizen grievances at scale</option>
+            <option>Coordinating volunteers and field workers</option>
+            <option>Building and maintaining digital presence</option>
+            <option>Getting visibility across wards</option>
+            <option>Organizing my constituency office operations</option>
+            <option>Communications and citizen outreach</option>
+            <option>All of the above</option>
+          </select>
+        </div>
+
+        <div class="form-privacy">
+          <span class="form-privacy-icon">🔒</span>
+          <span>This information is kept strictly confidential. We do not share your details with any third party. This consultation is private and completely without obligation.</span>
+        </div>
+
+        <button type="submit" class="btn btn-full btn-primary" style="font-size:15px;">
+          Schedule My Private Consultation →
+        </button>
+
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div style="font-size:48px;margin-bottom:16px;">✅</div>
+        <div style="font-family:var(--dp);font-size:22px;font-weight:800;color:var(--white);margin-bottom:8px;">Request received.</div>
+        <div style="font-size:15px;color:var(--g400);line-height:1.65;max-width:380px;margin:0 auto;">Our team will contact you within 24 hours to confirm your private consultation. Please check your WhatsApp and the number you provided.</div>
+      </div>
+
+      <div class="cta-divider">or reach us directly</div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:440px;margin:0 auto;">
+        <a href="https://wa.me/918052902267?text=Hi%2C%20I%27d%20like%20to%20book%20a%20private%20consultation%20about%20IndianPol%20for%20my%20constituency."
+           target="_blank" rel="noopener"
+           class="btn btn-full btn-wa">
+          💬 Start a WhatsApp Conversation
+        </a>
+        <a href="tel:+918052902267"
+           class="btn btn-full btn-ghost" style="font-size:14px;">
+          📞 Call Us — +91 80529 02267
+        </a>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:20px;">
+        <div style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--g600);"><span style="color:var(--green-l);">✓</span> Confidential</div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--g600);"><span style="color:var(--green-l);">✓</span> No commitment required</div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--g600);"><span style="color:var(--green-l);">✓</span> Response within 24 hours</div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--g600);"><span style="color:var(--green-l);">✓</span> Tailored to your constituency</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <div class="footer-brand">
+          <div class="footer-brand-mark">IP</div>
+          <span class="footer-brand-name">Indian<em>Pol</em></span>
+        </div>
+        <p class="footer-tagline">The operating system for political leaders in India. Constituency management, citizen engagement, and professional political operations.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+          <a href="tel:+918052902267" style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--g300);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--g300)'">
+            <span style="font-size:14px;">📞</span> +91 80529 02267
+          </a>
+          <a href="https://wa.me/918052902267" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:7px;font-size:13px;color:#6EE7B7;text-decoration:none;">
+            <span style="font-size:14px;">💬</span> WhatsApp Us
+          </a>
+        </div>
+        <a href="https://wa.me/918052902267" target="_blank" rel="noopener" class="btn btn-sm btn-wa" style="width:fit-content;">💬 Chat on WhatsApp</a>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <div class="footer-links">
+          <a href="#platform">Constituency CRM</a>
+          <a href="#platform">Volunteer Management</a>
+          <a href="#platform">Digital Presence</a>
+          <a href="#platform">Analytics</a>
+          <a href="#platform">Communications Hub</a>
+          <a href="#platform">Reputation Management</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Use Cases</div>
+        <div class="footer-links">
+          <a href="#usecases">MLAs &amp; MLCs</a>
+          <a href="#usecases">Members of Parliament</a>
+          <a href="#usecases">Municipal Councillors</a>
+          <a href="#usecases">Panchayat Leaders</a>
+          <a href="#usecases">Party Organizations</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#about">About IndianPol</a>
+          <a href="#security">Security &amp; Privacy</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <div class="footer-bottom" style="margin-top:24px;">
+      <div class="footer-legal">
+        © 2025 IndianPol. All rights reserved. &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a>
+      </div>
+      <div style="font-size:12px;color:var(--g600);">🇮🇳 Built in India, for India's political leaders.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     FLOATING ELEMENTS
+═══════════════════════════════════════════ -->
+
+<!-- WhatsApp FAB -->
+<a class="wa-fab"
+   href="https://wa.me/918052902267?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20IndianPol"
+   target="_blank" rel="noopener"
+   aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<!-- Demo FAB -->
+<a class="demo-fab" href="#contact" aria-label="Book a demo">
+  🎯 Book Demo
+</a>
+
+<!-- Sticky mobile bottom bar -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="https://wa.me/918052902267" target="_blank" rel="noopener"
+     class="sticky-btn" style="background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.2);color:#6EE7B7;">
+    💬 WhatsApp
+  </a>
+  <a href="#contact" class="sticky-btn" style="background:var(--blue);color:white;border:none;box-shadow:0 2px 12px rgba(26,86,219,0.35);">
+    🎯 Book a Demo
+  </a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+// ─── NAV SCROLL ───────────────────────────
+const topnav = document.getElementById('topnav');
+window.addEventListener('scroll', () => {
+  topnav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+// ─── HAMBURGER ────────────────────────────
+const ham = document.getElementById('ham');
+const navOverlay = document.getElementById('navOverlay');
+
+ham.addEventListener('click', () => {
+  const open = navOverlay.classList.contains('open');
+  open ? closeNav() : openNav();
+});
+
+function openNav() {
+  navOverlay.classList.add('open');
+  ham.classList.add('open');
+  ham.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+  navOverlay.classList.remove('open');
+  ham.classList.remove('open');
+  ham.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+navOverlay.addEventListener('click', e => { if (e.target === navOverlay) closeNav(); });
+
+// ─── REVEAL ON SCROLL ─────────────────────
+const rvEls = document.querySelectorAll('.rv');
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      rvObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.10, rootMargin: '0px 0px -32px 0px' });
+rvEls.forEach(el => rvObs.observe(el));
+
+// ─── USE CASE TABS ────────────────────────
+function switchUC(btn, panelId) {
+  document.querySelectorAll('.uc-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.uc-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+// ─── FAQ ACCORDION ────────────────────────
+function toggleFAQ(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ─── FORM SUBMIT (Formspree) ──────────────
+async function handleSubmit(e) {
+  e.preventDefault();
+  const name      = document.getElementById('f-name').value.trim();
+  const role      = document.getElementById('f-role').value;
+  const state     = document.getElementById('f-state').value;
+  const mobile    = document.getElementById('f-mobile').value.trim();
+  const constncy  = document.getElementById('f-constituency').value.trim();
+  const challenge = document.getElementById('f-challenge').value;
+
+  // Basic validation
+  if (!name)   { document.getElementById('f-name').focus(); return; }
+  if (!role)   { document.getElementById('f-role').focus(); return; }
+  if (!state)  { document.getElementById('f-state').focus(); return; }
+  if (!mobile) { document.getElementById('f-mobile').focus(); return; }
+
+  const submitBtn = e.target.querySelector('button[type=submit]');
+  submitBtn.textContent = 'Submitting…';
+  submitBtn.disabled = true;
+
+  const formData = new FormData(e.target);
+
+  try {
+    const res = await fetch('https://formspree.io/f/mbdeawgv', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      // Show success state
+      document.getElementById('consultForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+
+      // Open WhatsApp with pre-filled context after short delay
+      const msg = encodeURIComponent(
+        `Hi IndianPol,\n\nI just submitted a demo request.\n\nName: ${name}\nRole: ${role}\nState: ${state}\nConstituency: ${constncy || 'Not specified'}\nChallenge: ${challenge || 'Not specified'}\nMobile: ${mobile}\n\nPlease reach out to schedule my consultation.`
+      );
+      setTimeout(() => {
+        window.open(`https://wa.me/918052902267?text=${msg}`, '_blank');
+      }, 1400);
+    } else {
+      submitBtn.textContent = 'Schedule My Private Consultation →';
+      submitBtn.disabled = false;
+      alert('There was an issue submitting. Please try WhatsApp below or try again.');
+    }
+  } catch (err) {
+    submitBtn.textContent = 'Schedule My Private Consultation →';
+    submitBtn.disabled = false;
+    alert('Network error. Please try WhatsApp below or try again.');
+  }
+}
+
+// ─── STICKY BAR: hide near footer/contact ─
+const stickyBar = document.getElementById('stickyBar');
+const contactEl = document.getElementById('contact');
+const footerEl  = document.querySelector('.footer');
+
+const hideObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) stickyBar.classList.add('hidden');
+    else stickyBar.classList.remove('hidden');
+  });
+}, { threshold: 0.05 });
+
+if (contactEl) hideObs.observe(contactEl);
+if (footerEl)  hideObs.observe(footerEl);
+</script>
+</body>
+</html>
